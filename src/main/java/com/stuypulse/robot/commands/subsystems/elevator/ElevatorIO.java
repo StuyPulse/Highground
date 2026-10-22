@@ -31,4 +31,6 @@ public interface ElevatorIO {
     public default void updateInputs(ElevatorIOInputs inputs) {}
 
     public default void applyOutputs(ElevatorIOOutputs outputs) {}
+
+    public default void seedPosition(Angle position) {}
 }

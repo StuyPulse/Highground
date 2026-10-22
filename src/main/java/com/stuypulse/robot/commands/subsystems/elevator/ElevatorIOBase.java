@@ -3,6 +3,8 @@ package com.stuypulse.robot.commands.subsystems.elevator;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.stuypulse.robot.util.talonfx.logged.LoggedTalonFX;
 
+import edu.wpi.first.units.measure.Angle;
+
 public class ElevatorIOBase implements  ElevatorIO {
     private final LoggedTalonFX motor;
 
@@ -26,5 +28,10 @@ public class ElevatorIOBase implements  ElevatorIO {
 
             case STOP -> motor.stopMotor();
         }
+    }
+
+    @Override 
+    public void seedPosition(Angle position) {
+        motor.setPosition(position);
     }
 }
