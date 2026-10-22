@@ -8,6 +8,6 @@ on:
 
 jobs:
   systemcore:
-    uses: StuyPulse/.github/.github/workflows/systemcore-build.yml@main
+    uses: StuyPulse/.github/.github/workflows/roborio-build.yml@main
     secrets:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
