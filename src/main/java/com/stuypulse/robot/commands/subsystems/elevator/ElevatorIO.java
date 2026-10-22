@@ -1,13 +1,13 @@
 package com.stuypulse.robot.commands.subsystems.elevator;
 
-import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Meters;
 
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.AutoLogOutput;
 
 import com.stuypulse.robot.util.talonfx.logged.TalonFXInputs;
 
-import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 
 public interface ElevatorIO {
     @AutoLog 
@@ -17,7 +17,7 @@ public interface ElevatorIO {
 
     class ElevatorIOOutputs {
         @AutoLogOutput(key = "Elevator/Target Position")
-        public Angle targetPosition = Degrees.zero();
+        public Distance targetPosition = Meters.zero();
 
         @AutoLogOutput(key = "Elevator/Mode")
         public ElevatorIOOutputMode mode = ElevatorIOOutputMode.POSITION;
@@ -32,5 +32,5 @@ public interface ElevatorIO {
 
     public default void applyOutputs(ElevatorIOOutputs outputs) {}
 
-    public default void seedPosition(Angle position) {}
+    public default void seedPosition(Distance height) {}
 }

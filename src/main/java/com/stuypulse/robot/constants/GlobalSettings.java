@@ -19,7 +19,9 @@ public interface GlobalSettings {
      * Uses a {@link LoggedNetworkBoolean} for each subsystem to add subsystem toggling
      * functionality from external dashboards.
      */
-    interface EnabledSubsystems {}
+    interface EnabledSubsystems {
+        LoggedNetworkBoolean ELEVATOR = new LoggedNetworkBoolean("/Tuning/Enabled Subsystems/Elevator" , true);
+    }
 
     /** What mode the robot is in when running a simulation. */
     RobotMode SIM_MODE = RobotMode.SIM;

@@ -1,9 +1,12 @@
 package com.stuypulse.robot.commands.subsystems.elevator;
 
+import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Rotations;
+
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.stuypulse.robot.util.talonfx.logged.LoggedTalonFX;
 
-import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 
 public class ElevatorIOBase implements  ElevatorIO {
     private final LoggedTalonFX motor;
@@ -24,14 +27,15 @@ public class ElevatorIOBase implements  ElevatorIO {
     @Override 
     public void applyOutputs(ElevatorIOOutputs outputs) {
         switch (outputs.mode) {
-            case POSITION -> motor.setControl(positionController.withPosition(outputs.targetPosition));
+            // The sensor to mechanism ratio is set so 1 rotation = 1 meter of height
+            case POSITION -> motor.setControl(positionController.withPosition(Rotations.of(outputs.targetPosition.in(Meters))));
 
             case STOP -> motor.stopMotor();
         }
     }
 
     @Override 
-    public void seedPosition(Angle position) {
-        motor.setPosition(position);
+    public void seedPosition(Distance height) {
+        motor.setPosition(Rotations.of(height.in(Meters)));
     }
 }
