@@ -12,8 +12,24 @@ import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.wpilibj.simulation.ElevatorSim;
 
 public class ElevatorIOSim extends ElevatorIOBase {
-    private static final SystemSim<ElevatorSim> system = 
-	    SystemSim.of(
+    private final SystemSim<ElevatorSim> system;
+
+    private final TalonFXSimulation motor;
+
+    private ElevatorIOSim(TalonFXSimulation simMotor, SystemSim<ElevatorSim> system) {
+        super(simMotor);
+
+        motor = simMotor;
+
+        this.system = system;
+    }
+
+    private ElevatorIOSim(SystemSim<ElevatorSim> system) {
+        this(new TalonFXSimulation(ElevatorConstants.ElevatorMotors.MOTOR_ID, ElevatorConstants.ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO, system), system); 
+    }
+
+    public ElevatorIOSim() {
+        this(SystemSim.of(
             new ElevatorSim(
                 LinearSystemId.createElevatorSystem(
                     DCMotor.getKrakenX60(1), 
@@ -25,18 +41,7 @@ public class ElevatorIOSim extends ElevatorIOBase {
                 ElevatorConstants.ElevatorSettings.MAX_HEIGHT.in(Meters), 
                 true, 0),
             ElevatorConstants.ElevatorSettings.DRUM_RADIUS
-        );
-
-    private final TalonFXSimulation motor;
-
-    private ElevatorIOSim(TalonFXSimulation simMotor) {
-        super(simMotor);
-
-        motor = simMotor;
-    }
-
-    public ElevatorIOSim() {
-        this(new TalonFXSimulation(ElevatorConstants.ElevatorMotors.MOTOR_ID, ElevatorConstants.ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO, system)); 
+        ));
     }
 
     @Override 
