@@ -8,6 +8,11 @@ import com.stuypulse.robot.commands.auton.Auton;
 import com.stuypulse.robot.commands.auton.AutonFactory;
 import com.stuypulse.robot.constants.Field;
 import com.stuypulse.robot.constants.GlobalPorts;
+import com.stuypulse.robot.constants.GlobalSettings;
+import com.stuypulse.robot.subsystems.elevator.Elevator;
+import com.stuypulse.robot.subsystems.elevator.ElevatorIO;
+import com.stuypulse.robot.subsystems.elevator.ElevatorIOReal;
+import com.stuypulse.robot.subsystems.elevator.ElevatorIOSim;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,6 +26,7 @@ public class RobotContainer {
     // public final CommandGamepad operator = new CommandGamepad(GlobalPorts.Gamepad.OPERATOR);
 
     // Subsystems
+    private final Elevator elevator;
 
     // Autons
     private SendableChooser<Auton> autonChooser = new SendableChooser<>();
@@ -32,6 +38,14 @@ public class RobotContainer {
         configureDefaultCommands();
         configureButtonBindings();
         configureAutons();
+
+        switch (GlobalSettings.CURRENT_MODE) {
+            case REAL -> elevator = new Elevator(new ElevatorIOReal());
+
+            case SIM -> elevator = new Elevator(new ElevatorIOSim());
+
+            default -> elevator  = new Elevator(new ElevatorIO() {});
+        }
 
         SmartDashboard.putData("Field", Field.FIELD_2D);
     }
@@ -52,7 +66,13 @@ public class RobotContainer {
     /*** BUTTONS ***/
     /***************/
 
-    private void configureButtonBindings() {}
+    private void configureButtonBindings() {
+        driver.a().onTrue(elevator.setTop());
+
+        driver.b().onTrue(elevator.setBottom());
+
+        driver.x().onTrue(elevator.setMiddle());
+    }
 
     /**************/
     /*** AUTONS ***/
