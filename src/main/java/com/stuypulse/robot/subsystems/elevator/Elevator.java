@@ -2,7 +2,6 @@ package com.stuypulse.robot.subsystems.elevator;
 
 import org.littletonrobotics.junction.Logger;
 
-import com.stuypulse.robot.commands.subsystems.elevator.ElevatorIOInputsAutoLogged;
 import com.stuypulse.robot.constants.GlobalSettings;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputMode;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputs;
