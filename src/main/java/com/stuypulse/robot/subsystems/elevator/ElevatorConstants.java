@@ -56,5 +56,7 @@ public interface ElevatorConstants {
 			.withGravityType(GravityTypeValue.Elevator_Static)
 			.withSensorToMechanismRatio(ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO)
 			.withMotionProfile(ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
+
+        int MOTOR_ID = 0;
     }
 }
