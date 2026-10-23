@@ -1,6 +1,8 @@
 package com.stuypulse.robot.subsystems.elevator;
 
 import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Pounds;
 import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static edu.wpi.first.units.Units.RotationsPerSecondPerSecond;
 
@@ -12,6 +14,7 @@ import com.stuypulse.robot.util.talonfx.config.TalonFXConfig;
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Mass;
 
 public interface ElevatorConstants {
     public interface ElevatorSettings {
@@ -22,6 +25,12 @@ public interface ElevatorConstants {
         Distance MIDDLE_HEIGHT = Inches.of(14.5);
 
         double ROTATIONS_TO_HEIGHT_RATIO = 0;
+
+	double GEAR_RATIO = 52 / 12;
+
+	Mass MASS = Pounds.of(22.8);
+
+	Distance DRUM_RADIUS = Meters.of(ROTATIONS_TO_HEIGHT_RATIO / GEAR_RATIO / 2 / Math.PI);
 
         AngularVelocity MAX_VELOCITY = RotationsPerSecond.of(0);
 
