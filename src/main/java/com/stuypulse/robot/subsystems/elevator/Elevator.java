@@ -85,4 +85,8 @@ public class Elevator extends PeriodicSubsystem {
     public Command setBottom() {
         return runOnce(() -> setState(ElevatorState.BOTTOM));
     }
+
+    public Command setStop() {
+	return runOnce(() -> setState(ElevatorState.STOP));
+    }
 }

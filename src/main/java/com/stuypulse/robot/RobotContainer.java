@@ -70,6 +70,8 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         driver.a().onTrue(elevator.setTop());
+	
+	driver.y().onTrue(elevator.setStop());
 
         driver.b().onTrue(elevator.setBottom());
 
