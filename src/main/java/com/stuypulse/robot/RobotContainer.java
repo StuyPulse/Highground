@@ -34,11 +34,6 @@ public class RobotContainer {
     // Robot container
 
     public RobotContainer() {
-        configureLogging();
-        configureDefaultCommands();
-        configureButtonBindings();
-        configureAutons();
-
         switch (GlobalSettings.CURRENT_MODE) {
             case REAL -> elevator = new Elevator(new ElevatorIOReal());
 
@@ -46,6 +41,11 @@ public class RobotContainer {
 
             default -> elevator  = new Elevator(new ElevatorIO() {});
         }
+
+        configureLogging();
+        configureDefaultCommands();
+        configureButtonBindings();
+        configureAutons();
 
         SmartDashboard.putData("Field", Field.FIELD_2D);
     }

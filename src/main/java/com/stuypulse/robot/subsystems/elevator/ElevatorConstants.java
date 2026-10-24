@@ -24,13 +24,13 @@ public interface ElevatorConstants {
 
         Distance MIDDLE_HEIGHT = Inches.of(14.5);
 
-        double ROTATIONS_TO_HEIGHT_RATIO = 0;
+        double ROTATIONS_TO_HEIGHT_RATIO = 0.0369230769; // rotations per meter calculated from aunt mary constants
 
-	double GEAR_RATIO = 52 / 12;
+        double GEAR_RATIO = 52 / 12;
 
-	Mass MASS = Pounds.of(22.8);
+        Mass MASS = Pounds.of(22.8);
 
-	Distance DRUM_RADIUS = Meters.of(ROTATIONS_TO_HEIGHT_RATIO / GEAR_RATIO / 2 / Math.PI);
+        Distance DRUM_RADIUS = Meters.of(ROTATIONS_TO_HEIGHT_RATIO / GEAR_RATIO / 2 / Math.PI);
 
         AngularVelocity MAX_VELOCITY = RotationsPerSecond.of(0);
 
@@ -45,7 +45,7 @@ public interface ElevatorConstants {
         double kD = 0;
 
         double kS = 0;
-        
+
         double kV = 0;
 
         double kA = 0;
@@ -55,16 +55,16 @@ public interface ElevatorConstants {
 
     public interface ElevatorMotors {
         TalonFXConfig MOTOR_CONFIG = new TalonFXConfig()
-			.withStatorCurrentLimit(80)
-            .withSupplyCurrentLimit(40)
-			.withRampRate(0.25)
-			.withNeutralMode(NeutralModeValue.Brake)
-			.withInvertedValue(InvertedValue.Clockwise_Positive)
-			.withPIDConstants(Gains.kP, Gains.kI, Gains.kD, 0)
-			.withFFConstants(Gains.kS, Gains.kV, Gains.kA, Gains.kG,0)
-			.withGravityType(GravityTypeValue.Elevator_Static)
-			.withSensorToMechanismRatio(ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO)
-			.withMotionProfile(ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
+                .withStatorCurrentLimit(80)
+                .withSupplyCurrentLimit(40)
+                .withRampRate(0.25)
+                .withNeutralMode(NeutralModeValue.Brake)
+                .withInvertedValue(InvertedValue.Clockwise_Positive)
+                .withPIDConstants(Gains.kP, Gains.kI, Gains.kD, 0)
+                .withFFConstants(Gains.kS, Gains.kV, Gains.kA, Gains.kG, 0)
+                .withGravityType(GravityTypeValue.Elevator_Static)
+                .withSensorToMechanismRatio(ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO)
+                .withMotionProfile(ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
 
         int MOTOR_ID = 0;
     }
