@@ -14,6 +14,8 @@ import com.stuypulse.robot.subsystems.elevator.ElevatorIO;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIOReal;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIOSim;
 
+import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
+
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,7 +31,7 @@ public class RobotContainer {
     private final Elevator elevator;
 
     // Autons
-    private SendableChooser<Auton> autonChooser = new SendableChooser<>();
+    private LoggedDashboardChooser<Auton> autonChooser = new LoggedDashboardChooser<>("Auton");
 
     // Robot container
 
@@ -90,6 +92,6 @@ public class RobotContainer {
      * @return The command to run in autonomous
      */
     public Auton getAutonomousCommand() {
-        return autonChooser.getSelected();
+			return autonChooser.get();
     }
 }
