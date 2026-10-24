@@ -8,7 +8,7 @@ import com.stuypulse.robot.util.talonfx.logged.LoggedTalonFX;
 
 import edu.wpi.first.units.measure.Distance;
 
-public class ElevatorIOBase implements  ElevatorIO {
+public abstract class ElevatorIOBase implements  ElevatorIO {
     private final LoggedTalonFX motor;
 
     private final MotionMagicVoltage positionController;
