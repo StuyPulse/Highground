@@ -1,14 +1,17 @@
+/************************* PROJECT HIGHGROUND *************************/
+/* Copyright (c) 2026 StuyPulse Robotics. All rights reserved. */
+/* Use of this source code is governed by an MIT-style license */
+/* that can be found in the repository LICENSE file.           */
+/***************************************************************/
 package com.stuypulse.robot.subsystems.elevator;
-
-import org.littletonrobotics.junction.Logger;
 
 import com.stuypulse.robot.constants.GlobalSettings;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputMode;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputs;
 import com.stuypulse.robot.util.PeriodicSubsystem;
-
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj2.command.Command;
+import org.littletonrobotics.junction.Logger;
 
 public class Elevator extends PeriodicSubsystem {
     private final ElevatorIO io;
@@ -26,7 +29,7 @@ public class Elevator extends PeriodicSubsystem {
 
         io.seedPosition(ElevatorConstants.ElevatorSettings.MIN_HEIGHT);
     }
-    
+
     public enum ElevatorState {
         TOP,
         MIDDLE,
@@ -34,7 +37,7 @@ public class Elevator extends PeriodicSubsystem {
         STOP
     }
 
-    @Override 
+    @Override
     public void periodic() {
         io.updateInputs(inputs);
         Logger.processInputs("Elevator", inputs);
@@ -44,7 +47,7 @@ public class Elevator extends PeriodicSubsystem {
 
             return;
         }
-        
+
         switch (state) {
             case TOP -> runPosition(ElevatorConstants.ElevatorSettings.MAX_HEIGHT);
 
@@ -56,7 +59,7 @@ public class Elevator extends PeriodicSubsystem {
         }
     }
 
-    @Override 
+    @Override
     public void periodicAfterScheduler() {
         io.applyOutputs(outputs);
     }
@@ -87,6 +90,6 @@ public class Elevator extends PeriodicSubsystem {
     }
 
     public Command setStop() {
-	return runOnce(() -> setState(ElevatorState.STOP));
+        return runOnce(() -> setState(ElevatorState.STOP));
     }
 }

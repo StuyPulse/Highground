@@ -1,3 +1,8 @@
+/************************* PROJECT HIGHGROUND *************************/
+/* Copyright (c) 2026 StuyPulse Robotics. All rights reserved. */
+/* Use of this source code is governed by an MIT-style license */
+/* that can be found in the repository LICENSE file.           */
+/***************************************************************/
 package com.stuypulse.robot.subsystems.elevator;
 
 import static edu.wpi.first.units.Units.Inches;
@@ -10,7 +15,6 @@ import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.stuypulse.robot.util.talonfx.config.TalonFXConfig;
-
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Distance;
@@ -24,7 +28,8 @@ public interface ElevatorConstants {
 
         Distance MIDDLE_HEIGHT = Inches.of(14.5);
 
-        double ROTATIONS_TO_HEIGHT_RATIO = 0.0369230769; // rotations per meter calculated from aunt mary constants
+        double ROTATIONS_TO_HEIGHT_RATIO =
+                0.0369230769; // rotations per meter calculated from aunt mary constants
 
         double GEAR_RATIO = 52 / 12;
 
@@ -54,17 +59,19 @@ public interface ElevatorConstants {
     }
 
     public interface ElevatorMotors {
-        TalonFXConfig MOTOR_CONFIG = new TalonFXConfig()
-                .withStatorCurrentLimit(80)
-                .withSupplyCurrentLimit(40)
-                .withRampRate(0.25)
-                .withNeutralMode(NeutralModeValue.Brake)
-                .withInvertedValue(InvertedValue.Clockwise_Positive)
-                .withPIDConstants(Gains.kP, Gains.kI, Gains.kD, 0)
-                .withFFConstants(Gains.kS, Gains.kV, Gains.kA, Gains.kG, 0)
-                .withGravityType(GravityTypeValue.Elevator_Static)
-                .withSensorToMechanismRatio(ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO)
-                .withMotionProfile(ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
+        TalonFXConfig MOTOR_CONFIG =
+                new TalonFXConfig()
+                        .withStatorCurrentLimit(80)
+                        .withSupplyCurrentLimit(40)
+                        .withRampRate(0.25)
+                        .withNeutralMode(NeutralModeValue.Brake)
+                        .withInvertedValue(InvertedValue.Clockwise_Positive)
+                        .withPIDConstants(Gains.kP, Gains.kI, Gains.kD, 0)
+                        .withFFConstants(Gains.kS, Gains.kV, Gains.kA, Gains.kG, 0)
+                        .withGravityType(GravityTypeValue.Elevator_Static)
+                        .withSensorToMechanismRatio(ElevatorSettings.ROTATIONS_TO_HEIGHT_RATIO)
+                        .withMotionProfile(
+                                ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
 
         int MOTOR_ID = 0;
     }

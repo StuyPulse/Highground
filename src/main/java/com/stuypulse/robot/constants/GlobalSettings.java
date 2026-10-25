@@ -1,14 +1,14 @@
-/************************ PROJECT ZIXI ************************/
-/* Copyright (c) 2026 StuyPulse Robotics. All rights reserved.*/
-/* This work is licensed under the terms of the MIT license.  */
-/**************************************************************/
+/************************* PROJECT HIGHGROUND *************************/
+/* Copyright (c) 2026 StuyPulse Robotics. All rights reserved. */
+/* Use of this source code is governed by an MIT-style license */
+/* that can be found in the repository LICENSE file.           */
+/***************************************************************/
 package com.stuypulse.robot.constants;
 
 import static edu.wpi.first.units.Units.*;
 
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.units.measure.*;
-
+import edu.wpi.first.wpilibj.RobotBase;
 import org.littletonrobotics.junction.networktables.LoggedNetworkBoolean;
 
 /** File containing non-subsystem settings for the robot. */
@@ -20,7 +20,8 @@ public interface GlobalSettings {
      * functionality from external dashboards.
      */
     interface EnabledSubsystems {
-        LoggedNetworkBoolean ELEVATOR = new LoggedNetworkBoolean("/Tuning/Enabled Subsystems/Elevator" , true);
+        LoggedNetworkBoolean ELEVATOR =
+                new LoggedNetworkBoolean("/Tuning/Enabled Subsystems/Elevator", true);
     }
 
     /** What mode the robot is in when running a simulation. */
