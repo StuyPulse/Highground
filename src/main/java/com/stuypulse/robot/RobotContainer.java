@@ -7,7 +7,7 @@ package com.stuypulse.robot;
 
 import com.stuypulse.robot.commands.auton.Auton;
 import com.stuypulse.robot.commands.auton.AutonFactory;
-import com.stuypulse.robot.constants.Field;
+import com.stuypulse.robot.constants.FieldConstants;
 import com.stuypulse.robot.constants.GlobalPorts;
 import com.stuypulse.robot.constants.GlobalSettings;
 import com.stuypulse.robot.subsystems.elevator.Elevator;
@@ -47,7 +47,7 @@ public class RobotContainer {
         configureButtonBindings();
         configureAutons();
 
-        SmartDashboard.putData("Field", Field.FIELD_2D);
+        SmartDashboard.putData("Field", FieldConstants.FIELD_2D);
     }
 
     /***************/

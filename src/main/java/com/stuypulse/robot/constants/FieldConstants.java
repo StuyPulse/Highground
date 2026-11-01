@@ -10,7 +10,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import java.util.List;
 
-public interface Field {
+public interface FieldConstants {
     Field2d FIELD_2D = new Field2d();
 
     public static Pose2d transformToOppositeAlliance(Pose2d pose) {
@@ -18,6 +18,6 @@ public interface Field {
     }
 
     public static List<Pose2d> transformToOppositeAlliance(List<Pose2d> poses) {
-        return poses.stream().map(Field::transformToOppositeAlliance).toList();
+        return poses.stream().map(FieldConstants::transformToOppositeAlliance).toList();
     }
 }

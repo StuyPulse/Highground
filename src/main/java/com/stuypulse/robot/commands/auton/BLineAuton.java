@@ -5,7 +5,7 @@
 package com.stuypulse.robot.commands.auton;
 
 import com.stuypulse.robot.Robot;
-import com.stuypulse.robot.constants.Field;
+import com.stuypulse.robot.constants.FieldConstants;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -39,10 +39,10 @@ public class BLineAuton implements Auton {
     public void displayPaths() {
         for (Path path : displayedPaths) {
             if (Robot.isBlue()) {
-                BLineField.drawPath(Field.FIELD_2D, path);
+                BLineField.drawPath(FieldConstants.FIELD_2D, path);
             } else {
                 path.flip();
-                BLineField.drawPath(Field.FIELD_2D, path);
+                BLineField.drawPath(FieldConstants.FIELD_2D, path);
             }
         }
     }
@@ -50,7 +50,7 @@ public class BLineAuton implements Auton {
     @Override
     public void clearPaths() {
         for (Path path : displayedPaths) {
-            Field.FIELD_2D.getObject(BLineField.drawPath(Field.FIELD_2D, path)).setPoses();
+            FieldConstants.FIELD_2D.getObject(BLineField.drawPath(FieldConstants.FIELD_2D, path)).setPoses();
         }
     }
 
