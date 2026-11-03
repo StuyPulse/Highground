@@ -109,8 +109,8 @@ test {
 wpi.sim.addGui().defaultEnabled = true
 wpi.sim.addDriverstation()
 
-project.compileJava.dependsOn("spotlessApply")
 spotless {
+    enforceCheck = false
     java {
         targetExclude(
             "src/main/java/com/stuypulse/robot/commands/auton/*.java"

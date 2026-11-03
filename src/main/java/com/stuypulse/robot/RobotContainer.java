@@ -48,6 +48,7 @@ public class RobotContainer {
         configureAutons();
 
         SmartDashboard.putData("Field", FieldConstants.FIELD_2D);
+        SmartDashboard.putData("Zero Elevator", elevator.zero());
     }
 
     /***************/

@@ -24,12 +24,11 @@ public interface ElevatorConstants {
     public interface ElevatorSettings {
         Distance MIN_HEIGHT = Inches.of(0);
 
-        Distance MAX_HEIGHT = Inches.of(29);
+        Distance MAX_HEIGHT = Meters.of(0.62);
 
-        Distance MIDDLE_HEIGHT = Inches.of(14.5);
+        Distance MIDDLE_HEIGHT = Meters.of(0.31);
 
-        double ROTATIONS_TO_HEIGHT_RATIO =
-                0.0369230769; // rotations per meter calculated from aunt mary constants
+        double ROTATIONS_TO_HEIGHT_RATIO = 27.08333335026042; // rotations per meter calculated from aunt mary constants
 
         double GEAR_RATIO = 52 / 12;
 
@@ -73,6 +72,6 @@ public interface ElevatorConstants {
                         .withMotionProfile(
                                 ElevatorSettings.MAX_VELOCITY, ElevatorSettings.MAX_ACCEL);
 
-        int MOTOR_ID = 0;
+        int MOTOR_ID = 22;
     }
 }

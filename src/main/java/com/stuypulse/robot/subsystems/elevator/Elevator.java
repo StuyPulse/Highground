@@ -5,6 +5,8 @@
 /***************************************************************/
 package com.stuypulse.robot.subsystems.elevator;
 
+import static edu.wpi.first.units.Units.Meters;
+
 import com.stuypulse.robot.constants.GlobalSettings;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputMode;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputs;
@@ -91,5 +93,9 @@ public class Elevator extends PeriodicSubsystem {
 
     public Command setStop() {
         return runOnce(() -> setState(ElevatorState.STOP));
+    }
+
+    public Command zero() {
+        return runOnce(() -> io.seedPosition(Meters.zero()));
     }
 }
