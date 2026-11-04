@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Rotations;
 
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.VoltageOut;
 import com.stuypulse.robot.util.talonfx.logged.LoggedTalonFX;
 import edu.wpi.first.units.measure.Distance;
 
@@ -16,6 +17,7 @@ public abstract class ElevatorIOBase implements ElevatorIO {
     private final LoggedTalonFX motor;
 
     private final MotionMagicVoltage positionController;
+    private final VoltageOut voltageController;
 
     protected ElevatorIOBase(LoggedTalonFX motor) {
         this.motor = motor;
@@ -23,6 +25,7 @@ public abstract class ElevatorIOBase implements ElevatorIO {
         ElevatorConstants.ElevatorMotors.MOTOR_CONFIG.configure(motor);
 
         positionController = new MotionMagicVoltage(0);
+        voltageController = new VoltageOut(0);
     }
 
     @Override
@@ -37,6 +40,8 @@ public abstract class ElevatorIOBase implements ElevatorIO {
             case POSITION -> motor.setControl(
                     positionController.withPosition(
                             Rotations.of(outputs.targetPosition.in(Meters))));
+
+            case VOLTAGE -> motor.setControl(voltageController.withOutput(outputs.targetVoltage));
 
             case STOP -> motor.stopMotor();
         }

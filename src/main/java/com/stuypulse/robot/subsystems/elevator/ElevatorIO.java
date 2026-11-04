@@ -6,9 +6,12 @@
 package com.stuypulse.robot.subsystems.elevator;
 
 import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Volts;
 
 import com.stuypulse.robot.util.talonfx.logged.TalonFXInputs;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Voltage;
+
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.AutoLogOutput;
 
@@ -22,12 +25,16 @@ public interface ElevatorIO {
         @AutoLogOutput(key = "Elevator/Target Position")
         public Distance targetPosition = Meters.zero();
 
+        @AutoLogOutput(key = "Elevator/SysID Target Voltage")
+        public Voltage targetVoltage = Volts.zero();
+
         @AutoLogOutput(key = "Elevator/Mode")
         public ElevatorIOOutputMode mode = ElevatorIOOutputMode.POSITION;
     }
 
     enum ElevatorIOOutputMode {
         POSITION,
+        VOLTAGE,
         STOP
     }
 

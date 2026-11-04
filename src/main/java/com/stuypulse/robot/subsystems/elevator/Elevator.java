@@ -12,13 +12,20 @@ import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputMode;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIO.ElevatorIOOutputs;
 import com.stuypulse.robot.util.PeriodicSubsystem;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Voltage;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+
 import org.littletonrobotics.junction.Logger;
 
 public class Elevator extends PeriodicSubsystem {
     private final ElevatorIO io;
     private final ElevatorIOInputsAutoLogged inputs;
     private final ElevatorIOOutputs outputs;
+
+    private final SysIdRoutine sysid;
 
     private ElevatorState state;
 
@@ -30,6 +37,16 @@ public class Elevator extends PeriodicSubsystem {
         state = ElevatorState.BOTTOM;
 
         io.seedPosition(ElevatorConstants.ElevatorSettings.MIN_HEIGHT);
+
+        sysid = new SysIdRoutine(
+            new SysIdRoutine.Config(
+                null,
+                null,
+                null,
+                state -> Logger.recordOutput("Elevator/SysID State", state.toString())
+            ),
+            new SysIdRoutine.Mechanism(this::runVoltage, null, this)
+        );
     }
 
     public enum ElevatorState {
@@ -79,6 +96,11 @@ public class Elevator extends PeriodicSubsystem {
         outputs.targetPosition = height;
     }
 
+    private void runVoltage(Voltage voltage) {
+        outputs.mode = ElevatorIOOutputMode.VOLTAGE;
+        outputs.targetVoltage = voltage;
+    }
+
     public Command setTop() {
         return runOnce(() -> setState(ElevatorState.TOP));
     }
@@ -96,6 +118,15 @@ public class Elevator extends PeriodicSubsystem {
     }
 
     public Command zero() {
-        return runOnce(() -> io.seedPosition(Meters.zero()));
+        return Commands.runOnce(() -> io.seedPosition(Meters.zero()));
     }
+
+    public Command sysidQuasi(SysIdRoutine.Direction direction) {
+        return sysid.quasistatic(direction);
+    }
+
+    public Command sysidDynamic(SysIdRoutine.Direction direction) {
+        return sysid.dynamic(direction);
+    }
+
 }

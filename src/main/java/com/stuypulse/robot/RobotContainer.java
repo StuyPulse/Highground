@@ -16,6 +16,8 @@ import com.stuypulse.robot.subsystems.elevator.ElevatorIOReal;
 import com.stuypulse.robot.subsystems.elevator.ElevatorIOSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 public class RobotContainer {
@@ -85,6 +87,11 @@ public class RobotContainer {
         AutonFactory autonFactory = new AutonFactory();
 
         autonChooser.addOption("Do Nothing", autonFactory.doNothingAuton());
+
+        autonChooser.addOption("Elevator Quasi Forward", Auton.noPaths(elevator.sysidQuasi(Direction.kForward)));
+        autonChooser.addOption("Elevator Quasi Reverse", Auton.noPaths(elevator.sysidQuasi(Direction.kReverse)));
+        autonChooser.addOption("Elevator Dynamic Forward", Auton.noPaths(elevator.sysidDynamic(Direction.kForward)));
+        autonChooser.addOption("Elevator Dynamic Reverse", Auton.noPaths(elevator.sysidDynamic(Direction.kReverse)));
     }
 
     /**
